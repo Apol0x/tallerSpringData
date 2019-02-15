@@ -15,9 +15,34 @@
  */
 package org.springframework.samples.petclinic.repository;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.Vet;
+import org.springframework.samples.petclinic.model.Specialty;
+
 
 public interface VetRepository extends JpaRepository<Vet, Integer> {
+
+	List<Vet> findByLastName(String lastName);
+	
+	List<Vet> findByFirstNameAndLastName(String firstName,String lastName);
+	
+	List<Vet> findByFirstNameOrLastName(String firstName,String lastName);
+	
+	@Query("SELECT distinct v FROM Vet v INNER JOIN v.specialties s WHERE s.name = :name")
+	List<Vet> findVetsByNameSpecialty(
+	@Param("name") String name);
+	
+	
+//	select petclinic.vets.first_name, petclinic.specialties.name FROM petclinic.vets JOIN petclinic.vet_specialties 
+//	on (petclinic.vets.id = petclinic.vets.id)
+//	join specialties 
+//	on (petclinic.vet_specialties.specialty_id = petclinic.specialties.id)
+//	 where petclinic.vet_specialties.specialty_id = 1;
 
 }

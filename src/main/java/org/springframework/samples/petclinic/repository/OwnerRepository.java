@@ -15,13 +15,21 @@
  */
 package org.springframework.samples.petclinic.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.Owner;
 
 
 public interface OwnerRepository extends JpaRepository<Owner, Integer> {
 
     Owner findById(Integer id);
+    
+    @Query("SELECT distinct o FROM Owner o WHERE o.firstName LIKE :q% OR o.lastName LIKE :q%")
+	List<Owner> findOwnersByFirstNameOrLastName(
+	@Param("q") String query);
     
 }
  

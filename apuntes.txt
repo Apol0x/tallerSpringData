@@ -1,0 +1,29 @@
+-------
+.cargamos el proyecto en eclipse.
+.borramos en application-mysql.properties la siguiente linea
+	spring.datasource.url=jdbc:mysql://localhost/test
+por esta
+	spring.datasource.url=jdbc:mysql://localhost/petclinic
+luego actualizamos el Maven project.
+
+luego en el mysql workbench creamos el schema petclinic.
+
+arrancamos la aplicacion desde PetClinicApplication.java
+
+para que no tire de una base de datos embebida comentamos en 
+aplication.propertys la siguiente linea
+
+<!-- <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <scope>runtime</scope>
+    </dependency> -->
+
+y dejamos esta tal que así
+
+<dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.11</version>
+      <scope>runtime</scope>
+    </dependency>

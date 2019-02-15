@@ -16,12 +16,18 @@
 
 package org.springframework.samples.petclinic;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Specialty;
+import org.springframework.samples.petclinic.model.Vet;
+import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.repository.SpecialityRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 
@@ -41,13 +47,77 @@ public class PetClinicApplication {
     }
     
     @Bean
-	public CommandLineRunner demoVetRepository(VetRepository vetRepository, SpecialityRepository specialityRepository) {
+	public CommandLineRunner demoVetRepository(VetRepository vetRepository, SpecialityRepository specialityRepository, OwnerRepository ownerRepository) {
 		return (args) -> {
 			log.info("*****************************************************");
 			log.info("BOOTCAMP - Spring y Spring Data - vetRepository");
 			log.info("*****************************************************");
 			
 			//TODO Añade aquí tu código
+//			//Crear un objeto Vet Sin Speciality
+//			//Persiste el objeto Vet en BBDD
+//			//
+//			Vet v = new Vet();
+//			v.setFirstName("paco");
+//			v.setLastName("polo");
+//			v.addSpecialty(null);
+//			vetRepository.saveAndFlush(v);
+//			
+//			//
+//			//Consultar por ID y comprobar que se ha creado correctamente
+//			Specialty s = specialityRepository.findOne(1);
+//			
+//			//
+//			//Editar el elemento recien creado para añadir Speciality concreta
+//			
+//			//
+//			log.info("Listar todos los veterinarios");
+//			for(Vet v: vetRepository.findAll()) {
+//				log.info("Veterinario: "+ v);
+//			}
+			
+			
+//			System.out.println("Obtener una lista de Vets filtrando por lastName");
+//			for(Vet v: vetRepository.findByLastName("polo")) {
+//				log.info("Veterinario: "+ v);
+//			}
+//			System.out.println("");
+//			System.out.println("Obtener una lista de Vets buscando en firtsName y lastName");
+//			for(Vet v: vetRepository.findByFirstNameAndLastName("Sharon", "Jenkins")) {
+//				log.info("Veterinario: "+ v);
+//			}
+//			System.out.println("");
+//			System.out.println("Obtener una lista de Vets buscando en firtsName o lastName");
+//			for(Vet v: vetRepository.findByFirstNameOrLastName("ppdsadas", "polo")) {
+//				log.info("Veterinario: "+ v);
+//			}
+			
+			
+//			System.out.println("");
+//			System.out.println("Obtener una lista de Vet buscando por la especialidad radiology");
+//			for(Vet v: vetRepository.findVetsByNameSpecialty("radiology")) {
+//				log.info("Veterinario: "+ v);
+//			}
+//			
+//			System.out.println("");
+//			System.out.println("Obtener una lista de Vet buscando por la especialidad surgery");
+//			for(Vet v: vetRepository.findVetsByNameSpecialty("surgery")) {
+//				log.info("Veterinario: "+ v);
+//			}
+//			
+//			System.out.println("");
+//			System.out.println("Obtener una lista de Vet buscando por la especialidad dentistry");
+//			for(Vet v: vetRepository.findVetsByNameSpecialty("dentistry")) {
+//				log.info("Veterinario: "+ v);
+//			}
+			
+			
+			System.out.println("");
+			System.out.println("Buscar los Owner por su nombre y apellido por parte o total");
+			for(Owner o: ownerRepository.findOwnersByFirstNameOrLastName("da")) {
+				System.out.println(o.getFirstName()+'	'+o.getLastName());
+				
+			}
 		};
 	}
     
